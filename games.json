@@ -1,7 +1,7 @@
 [
     {
         "name": "! Request a Game",
-        "icon": "/Lunar-Games/media/forms.png/",
+        "icon": "https://gdm-catalog-fmapi-prod.imgix.net/ProductLogo/e3c2779c-ce77-4a80-bf2f-4943290958a2.png?auto=format%2Ccompress&fit=max&w=256&q=75&ch=Width%2CDPR",
         "url": "https://forms.gle/FGaYp1szX2VuoutQA"
     },
     {
@@ -57,7 +57,7 @@
     {
         "name": "Dogeminer",
         "icon": "https://cdn6.aptoide.com/imgs/4/1/0/41029ce4231b679ab58e18f3f391438e_icon.png",
-        "url": "https://xlegends.github.io/DogeMiner/"
+        "url": "https://natleef1.github.io/dogeminer/"
     },
     {
         "name": "Dogeminer 2",
@@ -443,5 +443,84 @@
         "name": "World's Hardest Game 3",
         "icon": "",
         "url": "https://natleef1.github.io/worlds-hardest-game-3/"
+    },
+    {
+        "name": "Super Mario 64",
+        "icon": "",
+        "url": "https://natleef1.github.io/super-mario-64/"
+    },
+    {
+        "name": "Jelly Truck",
+        "icon": "",
+        "url": "https://natleef1.github.io/jelly-truck/"
+    },
+    {
+        "name": "Getting Over It",
+        "icon": "",
+        "url": "https://natleef1.github.io/getting-over-it/"
+    },
+    {
+        "name": "Duck Life 1",
+        "icon": "",
+        "url": "https://natleef1.github.io/duck-life/"
+    },
+    {
+        "name": "Duck Life 2: World Champion",
+        "icon": "",
+        "url": "https://natleef1.github.io/duck-life-2-world-champion/"
+    },
+    {
+        "name": "Duck Life 3: Evolution",
+        "icon": "",
+        "url": "https://natleef1.github.io/duck-life-3-evolution/"
+    },
+    {
+        "name": "Duck Life 4",
+        "icon": "",
+        "url": "https://natleef1.github.io/duck-life-4/"
+    },
+    {
+        "name": "Drift Boss",
+        "icon": "",
+        "url": "https://natleef1.github.io/drift-boss/"
+    },
+    {
+        "name": "Clicker Heroes",
+        "icon": "",
+        "url": "https://natleef1.github.io/clicker-heroes/"
+    },
+    {
+        "name": "Chrome Dino",
+        "icon": "",
+        "url": "https://natleef1.github.io/chrome-dino/"
+    },
+    {
+        "name": "Alien Hominid",
+        "icon": "",
+        "url": "https://natleef1.github.io/alien-hominid/"
+    },
+        {
+        "name": "Solitaire",
+        "icon": "",
+        "url": "https://natleef1.github.io/solitaire/"
+    },
+        {
+        "name": "Idle Miner",
+        "icon": "",
+        "url": "https://natleef1.github.io/idle-miner/"
+    },
+        {
+        "name": "Crossy Road",
+        "icon": "",
+        "url": "https://natleef1.github.io/crossy-road/"
+    },    {
+        "name": "Cluster Rush",
+        "icon": "",
+        "url": "https://natleef1.github.io/cluster-rush/"
+    },
+        {
+        "name": "Bloxorz",
+        "icon": "",
+        "url": "https://natleef1.github.io/bloxorz/"
     }
 ]
