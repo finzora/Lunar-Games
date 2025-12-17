@@ -533,5 +533,15 @@
         "name": "8 Ball Pool",
         "icon": "",
         "url": "https://natleef1.github.io/8-ball-pool/"
+    },
+    {
+        "name": "Push Your Luck",
+        "icon": "",
+        "url": "https://natleef1.github.io/push-your-luck/"
+    },
+    {
+        "name": "Tower of Destiny",
+        "icon": "",
+        "url": "https://natleef1.github.io/tower-of-destiny/"
     }
 ]
