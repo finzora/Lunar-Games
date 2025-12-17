@@ -1,7 +1,12 @@
 [
   {
-    "name": "Invidious",
+    "name": "Invidious (YouTube)",
     "icon": "https://invidious.io/invidious-colored-vector.svg",
     "url": "https://inv.perditum.com/"
+  },
+  {
+    "name": "Interstellar",
+    "icon": "https://avatars.githubusercontent.com/u/103917385?s=280&v=4",
+    "url": "https://agia.explosionlearning.org/"
   }
 ]
