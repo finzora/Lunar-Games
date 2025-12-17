@@ -499,28 +499,39 @@
         "icon": "",
         "url": "https://natleef1.github.io/alien-hominid/"
     },
-        {
+    {
         "name": "Solitaire",
         "icon": "",
         "url": "https://natleef1.github.io/solitaire/"
     },
-        {
+    {
         "name": "Idle Miner",
         "icon": "",
         "url": "https://natleef1.github.io/idle-miner/"
     },
-        {
+    {
         "name": "Crossy Road",
         "icon": "",
         "url": "https://natleef1.github.io/crossy-road/"
-    },    {
+    },
+    {
         "name": "Cluster Rush",
         "icon": "",
         "url": "https://natleef1.github.io/cluster-rush/"
     },
-        {
+    {
         "name": "Bloxorz",
         "icon": "",
         "url": "https://natleef1.github.io/bloxorz/"
+    },
+    {
+        "name": "Basket Bros",
+        "icon": "",
+        "url": "https://natleef1.github.io/basketbros/"
+    },
+    {
+        "name": "8 Ball Pool",
+        "icon": "",
+        "url": "https://natleef1.github.io/8-ball-pool/"
     }
 ]
