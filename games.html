@@ -8,7 +8,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <title>Lunar</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/x-icon" href="/media/logo.svg">
+    <link rel="icon" href="media/logo/logo.svg" type="image/svg+xml">
+    <script>
+        (function(){
+            try{
+                const map = { lunar: 'media/logo/logo.svg', google: 'media/settings/google.png', dashboard: 'media/settings/canvas.ico' };
+                const v = localStorage.getItem('siteFavicon');
+                if(v && map[v]){
+                    const link = document.querySelector("link[rel~='icon']");
+                    if(link) link.href = map[v];
+                    if(v === 'google') document.title = 'Google';
+                    else if(v === 'dashboard') document.title = 'Dashboard';
+                    else document.title = 'Lunar';
+                }
+            }catch(e){ }
+        })();
+    </script>
 </head>
 <body>
     <nav>
@@ -33,6 +48,7 @@
     </div>
 
     </main>
+    <script src="particles.js" defer></script>
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <script>
     lucide.createIcons();

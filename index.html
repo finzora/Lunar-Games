@@ -8,7 +8,27 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <title>Lunar</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/x-icon" href="/media/logo.svg">
+    <link rel="icon" href="media/logo/logo.svg" type="image/svg+xml">
+    <script>
+        // apply persisted favicon choice (if any) as early as possible
+        (function(){
+            try{
+                const map = { lunar: 'media/logo/logo.svg', google: 'media/settings/google.png', dashboard: 'media/settings/canvas.ico' };
+                const v = localStorage.getItem('siteFavicon');
+                if(v && map[v]){
+                    const link = document.querySelector("link[rel~='icon']");
+                    if(link) link.href = map[v];
+                    else{
+                        const l = document.createElement('link'); l.rel='icon'; l.href=map[v]; document.head.appendChild(l);
+                    }
+                    // set title mapping
+                    if(v === 'google') document.title = 'Google';
+                    else if(v === 'dashboard') document.title = 'Dashboard';
+                    else document.title = 'Lunar';
+                }
+            }catch(e){/* ignore */}
+        })();
+    </script>
 </head>
 <body>
     <nav>
@@ -25,9 +45,10 @@
     <h1 class="title" style="margin-top: 20vh;">Lunar<i data-lucide="moon-star" class="logo"></i></h1>
     <h1>Play all your favorite web games.</h1>
     </main>
-    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
-    <script>
-        lucide.createIcons();
-      </script>
+        <script src="particles.js" defer></script>
+        <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+        <script>
+                lucide.createIcons();
+            </script>
 </body>
 </html>

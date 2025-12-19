@@ -4,6 +4,9 @@ body {
     font-family: "Noto Sans", sans-serif;
     text-align: center;
 }
+:root{
+    --fav-gap: 12px;
+}
 .title {
     font-size: 64px;
     display: flex;
@@ -141,9 +144,9 @@ a {
     width: min(720px, 92%);
     max-width: 720px;
     padding: 10px 14px;
-    border-radius: 20px;
+    border-radius: 30px;
     border: 1px solid #313244;
-    background: #0f1116;
+    background: #181825;
     color: #cdd6f4;
     font-size: 18px;
     outline: none;
@@ -151,3 +154,58 @@ a {
 }
 .search-input::placeholder{ color: #8f9db0; }
 .search-input:focus{ box-shadow: 0 0 0 4px rgba(100,120,255,0.06); border-color: #4b5563; }
+
+/* Favicon option tiles (wider, less tall than game tiles) */
+.fav-container{
+    background: #181825;
+    border: 1px solid #313244;
+    border-radius: 30px;
+    padding-inline: var(--fav-gap);
+    padding-block: calc(var(--fav-gap) * 1.5);
+    box-sizing: border-box;
+    margin-block: calc(var(--fav-gap) * 1.5);
+    overflow-x: auto; /* allow horizontal scroll on the container instead of the grid */
+    overflow-y: visible;
+    position: relative;
+}
+.fav-grid{ display:flex; gap:var(--fav-gap); flex-wrap:nowrap; margin-top:0; overflow: visible; justify-content: center; }
+.fav-option{
+    background-color: #181825;
+    border: 1px solid #313244;
+    border-radius: 12px;
+    width: 260px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: box-shadow 160ms ease, border-color 160ms ease, transform 160ms ease;
+    background-clip: padding-box;
+    will-change: transform;
+    -webkit-transform: translateZ(0);
+    position: relative;
+    z-index: 1;
+    backface-visibility: hidden;
+}
+.fav-option:focus{ outline: none; box-shadow: 0 0 0 4px rgba(100,120,255,0.06); z-index:10; border-style:solid; border-width:1px; }
+.fav-option.selected{ border-color: #7aa2ff; box-shadow: 0 6px 20px rgba(0,0,0,0.32); z-index:10; border-style:solid; border-width:1px; }
+.fav-option:not(.selected):hover{ transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.20); border-color:#4b5563; z-index:10; border-style:solid; border-width:1px; }
+.fav-img{ width: 64px; height: 64px; object-fit: contain; border-radius: 8px; border: 1px solid rgba(49,50,68,0.6); }
+.fav-name{ font-size: 16px; font-weight: 700; color: #cdd6f4; }
+.fav-option input{ position: absolute; opacity: 0; pointer-events: none; }
+
+@media (max-width: 980px){ .fav-option{ width: 220px; height: 84px; } .fav-img{ width:56px; height:56px; } }
+@media (max-width: 700px){ .fav-grid{ gap:10px; } .fav-option{ width: 200px; height: 80px; } }
+
+/* Toggle switch for particles */
+.switch{ display:inline-block; width:44px; height:26px; position:relative; }
+.switch input{ opacity:0; width:0; height:0; position:absolute; left:0; top:0; }
+.switch .slider{ position:absolute; cursor:pointer; inset:0; background:#4b5563; border-radius:999px; transition: background 160ms ease, box-shadow 160ms ease; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.18); }
+.switch .slider:before{ content:''; position:absolute; left:4px; top:50%; transform: translateY(-50%); width:18px; height:18px; background:#fff; border-radius:50%; transition: transform 160ms cubic-bezier(.2,.9,.3,1); box-shadow: 0 2px 6px rgba(0,0,0,0.24); }
+.switch input:checked + .slider{ background:#34d399; box-shadow: 0 6px 18px rgba(52,211,153,0.12); }
+.switch input:checked + .slider:before{ transform: translateY(-50%) translateX(18px); }
+.switch:focus-within .slider{ box-shadow: 0 0 0 4px rgba(100,120,255,0.06); }
+
+@media (max-width:480px){ .switch{ width:40px; height:22px; } .switch .slider:before{ width:16px; height:16px; left:3px; } .switch input:checked + .slider:before{ transform: translateY(-50%) translateX(14px); } }

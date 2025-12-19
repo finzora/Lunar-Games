@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <title>Lunar</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/x-icon" href="/media/logo.svg">
+    <link rel="icon" href="media/logo/logo.svg" type="image/svg+xml">
 </head>
 <body>
     <nav>
@@ -23,47 +23,125 @@
     </nav>
     <main>
     <h1 class="title2">Settings</h1>
-    <div class="search-container">
-        <input id="settingSearch" class="search-input" type="search" placeholder="Search settings..." aria-label="Search settings">
-    </div>
-    <div class="game2" id="settingsList">
-        <noscript>
-            <p>Enable JavaScript to see the settings list.</p>
-        </noscript>
-    </div>
+    <section style="max-width:900px;margin:20px auto;padding:10px;">
+        <div class="fav-container">
+            <h2 style="margin:0 0 8px 0;">Favicon</h2>
+            <p style="margin:0 0 12px 0;">Choose which icon appears in the browser tab for the site.</p>
+            <div class="fav-grid">
+            <div class="fav-option" data-value="lunar" role="button" tabindex="0" aria-pressed="false">
+                <input type="radio" name="favicon" value="lunar" aria-hidden="true">
+                <img src="media/logo/logo.png" alt="Lunar icon (HD)" class="fav-img">
+                <div class="fav-name">Lunar</div>
+            </div>
+            <div class="fav-option" data-value="google" role="button" tabindex="0" aria-pressed="false">
+                <input type="radio" name="favicon" value="google" aria-hidden="true">
+                <img src="media/settings/google2.png" alt="Google icon (HD)" class="fav-img">
+                <div class="fav-name">Google</div>
+            </div>
+            <div class="fav-option" data-value="dashboard" role="button" tabindex="0" aria-pressed="false">
+                <input type="radio" name="favicon" value="dashboard" aria-hidden="true">
+                <img src="media/settings/canvas2.png" alt="Canvas icon (HD)" class="fav-img">
+                <div class="fav-name">Canvas</div>
+            </div>
+            </div>
+        </div>
+
+        <div class="fav-container" style="margin-top:12px;">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
+                <div style="font-weight:700;color:#cdd6f4;">Background particles</div>
+                <label class="switch">
+                    <input id="particlesToggle" type="checkbox" aria-label="Enable background particles">
+                    <span class="slider" aria-hidden="true"></span>
+                </label>
+            </div>
+        </div>
+        
+    </section>
     </main>
+    <script src="particles.js" defer></script>
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <script>
-    lucide.createIcons();
-    let allSettings = [];
-    async function loadSettings(){
-        try{
-            const res = await fetch('settings.json');
-            if(!res.ok) throw new Error('Could not load settings.json');
-            const items = await res.json();
-            items.sort((a,b)=> (a.name||'').localeCompare(b.name||'', undefined, {sensitivity: 'base'}));
-            allSettings = items;
-            renderSettings(allSettings);
-        }catch(e){ console.error(e); }
-    }
-    function renderSettings(list){
-        const container = document.getElementById('settingsList');
-        container.innerHTML = '';
-        if(!list || list.length===0){ const p=document.createElement('p'); p.textContent='No items found.'; p.style.color='#cdd6f4'; container.appendChild(p); return; }
-        list.forEach(s=>{
-            const item = document.createElement('div'); item.className='game';
-            const a = document.createElement('a'); a.href = s.url || '#';
-            const img = document.createElement('img'); img.className='game-img'; img.src = s.icon || '/media/logo.svg'; img.alt = s.name || 'setting';
-            const h = document.createElement('h1'); h.className='game-txt'; const u=document.createElement('u'); u.textContent = s.name||'Untitled'; h.appendChild(u);
-            a.appendChild(img); a.appendChild(h); item.appendChild(a); container.appendChild(item);
-        });
         lucide.createIcons();
-    }
-    document.addEventListener('DOMContentLoaded', ()=>{
-        loadSettings();
-        const s = document.getElementById('settingSearch');
-        if(s) s.addEventListener('input', e=>{ const q=(e.target.value||'').trim().toLowerCase(); if(!q) return renderSettings(allSettings); renderSettings(allSettings.filter(i=> (i.name||'').toLowerCase().includes(q))); });
-    });
+
+        // favicon mapping
+        const FAV_MAP = {
+            lunar: 'media/logo/logo.svg',
+            google: 'media/settings/google.png',
+            dashboard: 'media/settings/canvas.ico'
+        };
+
+        function setFavicon(url){
+            if(!url) return;
+            let link = document.querySelector("link[rel~='icon']");
+            if(!link){
+                link = document.createElement('link');
+                link.rel = 'icon';
+                document.head.appendChild(link);
+            }
+            link.href = url;
+        }
+
+        // load saved choice
+        const saved = localStorage.getItem('siteFavicon');
+        if(saved && FAV_MAP[saved]){
+            setFavicon(FAV_MAP[saved]);
+        }
+
+        // helper to set document title based on selection
+        function setTitleFor(val){
+            try{
+                if(val === 'google') document.title = 'Google';
+                else if(val === 'dashboard') document.title = 'Dashboard';
+                else document.title = 'Lunar';
+            }catch(e){}
+        }
+
+        // wire up option tiles
+        function markSelected(val){
+            document.querySelectorAll('.fav-option').forEach(el=>{
+                const v = el.getAttribute('data-value');
+                const input = el.querySelector('input[type="radio"]');
+                if(v === val){
+                    el.classList.add('selected');
+                    el.setAttribute('aria-pressed','true');
+                    if(input) input.checked = true;
+                }else{
+                    el.classList.remove('selected');
+                    el.setAttribute('aria-pressed','false');
+                    if(input) input.checked = false;
+                }
+            });
+        }
+
+        document.querySelectorAll('.fav-option').forEach(el=>{
+            const val = el.getAttribute('data-value');
+            el.addEventListener('click', ()=>{
+                localStorage.setItem('siteFavicon', val);
+                setFavicon(FAV_MAP[val]);
+                setTitleFor(val);
+                markSelected(val);
+            });
+            el.addEventListener('keydown', (e)=>{ if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); el.click(); } });
+        });
+
+        // initialize selection UI and title
+        markSelected(saved || 'lunar');
+        setTitleFor(saved || 'lunar');
+
+        // particles toggle wiring
+        const particlesToggle = document.getElementById('particlesToggle');
+        try{
+            const pSaved = localStorage.getItem('particlesEnabled');
+            particlesToggle.checked = (pSaved === 'true');
+        }catch(e){ particlesToggle.checked = false; }
+
+        particlesToggle.addEventListener('change', (e)=>{
+            const on = !!e.target.checked;
+            try{ localStorage.setItem('particlesEnabled', on ? 'true' : 'false'); }catch(e){}
+            if(on) window.enableParticles && window.enableParticles();
+            else window.disableParticles && window.disableParticles();
+        });
+
     </script>
 </body>
 </html>
